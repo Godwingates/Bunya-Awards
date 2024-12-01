@@ -48,12 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const contestantName = card.getAttribute("data-name");
             const voteCountElement = card.querySelector(".vote-count");
 
-            // Create a unique key for the vote based on the page and contestant
-            const voteKey = `${pageId}-${contestantName}`;
-
-            // Check if user has already voted on this page for this contestant
-            if (sessionStorage.getItem(voteKey)) {
-                alert("You have already voted for this contestant on this page! You cannot vote again.");
+            // Check if the user has already voted on this page
+            if (sessionStorage.getItem(`voted-${pageId}`)) {
+                alert("You have already voted for a contestant on this page! You cannot vote again.");
                 return;
             }
 
@@ -73,8 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Save votes to localStorage
             localStorage.setItem(contestantName, newVotes);
 
-            // Mark this vote as completed in sessionStorage
-            sessionStorage.setItem(voteKey, "true");
+            // Mark this page as voted in sessionStorage
+            sessionStorage.setItem(`voted-${pageId}`, "true");
 
             // Update total votes
             totalVotes += 1;

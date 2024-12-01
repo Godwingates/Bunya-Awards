@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="logo">Bunya Awards</div>
+        <div class="nav-icons">
+            <input type="text" placeholder="Search..." class="search-box">
+            <button class="menu-btn">☰</button>
+        </div>
+    </header>
+<div class="intro">
+    <h1>Welcome to Bunya Awards Bunyagabu district</h1>
+    <p><i>Best singers and songs plus collabs nomination dont miss out to vote for your best artist</i></p>
+    <img src="bunya awards.jpg" alt="bunya awards">
+</div>
+    <main>
+        <section class="voting-info">
+            <p><strong>Vote Started:</strong> 2024-11-25 @ 00:00</p>
+            <p><strong>Vote End:</strong> 2024-12-16 @ 00:00</p>
+            <div class="vote-timer">
+                <p><strong>Voting Ends in:</strong> <span id="timer"></span></p>
+                <p><strong>Total Votes:</strong> <span id="total-votes">0</span></p>
+            </div>
+        </section>
+
+        <section class="contestants">
+            <h2>Best collab of the Year</h2>
+            <div class="contestant-list">
+                <div class="contestant-card" data-votes="0" data-name="Bitware Prince willz ft Vic tumz">
+                    <img src="bitware.jpg" alt="Bitware">
+                    <p><span class="vote-count">0</span> Votes</p>
+                    <button class="vote-btn">Vote</button>
+                </div>
+                <div class="contestant-card" data-votes="0" data-name="Budget Vic tumz ft torino">
+                    <img src="budget.jpg" alt="budget">
+                    <p><span class="vote-count">0</span> Votes</p>
+                    <button class="vote-btn">Vote</button>
+                </div>
+                <div class="contestant-card" data-votes="0" data-name="Nzikakane Doro weiyz ft prince willz">
+                    <img src="nzikakane.jpg" alt="Baby-nah">
+                    <p><span class="vote-count">0</span> Votes</p>
+                    <button class="vote-btn">Vote</button>
+                </div>
+                <div class="contestant-card" data-votes="0" data-name="Wandeka tall man ft prince willz">
+                    <img src="wandekaa.jpg" alt="wandeka ">
+                    <p><span class="vote-count">0</span> Votes</p>
+                    <button class="vote-btn">Vote</button>
+                </div>
+                <!-- Add more cards as needed -->
+            </div>
+        </section>
+
+        <div class="modal" id="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close-btn">&times;</span>
+                <h3>Create an Account</h3>
+                <p>To vote, please create an account or log in.</p>
+                <button id="create-account-btn">Create Account</button>
+            </div>
+        </div>
+    </main>
+    
+    
+  
+
+    <script src="scriptz.js"></script>
+</body>
+<footer>
+      <div class="bunya">
+        <img src="bunya awards.jpg" alt="bunya awards">
+        <p>Bunya Awards was organised by KB electronics and MZEI promotions located in Rwimi </p>
+    </div>
+    <div class="links">
+        <nav>
+            <h2>Others pages</h2>
+            <a href="index.html">Home</a>
+            <a href="song.html">song of the year</a>
+            <a href="collab.html">Collab of the year</a>
+            <a href="singer.html">Artist of the year</a>
+            <a href="female.html">Female artist of the year</a>
+            <a href="privacy.html">Privacy policy</a>
+            <a href="#">Terms of Service</a>
+        </nav>
+    </div>
+    <div class="icons">
+    <a href="https://www.instagram.com/prince willz"><img width="48" height="48" src="https://img.icons8.com/color/48/instagram-new--v1.png" alt="instagram-new--v1"/>
+    <a href="https://wa.me/+256776138917"><img width="48" height="48" src="https://img.icons8.com/color/48/whatsapp--v1.png"  alt="whatsapp--v1"/></a>
+    
+    <a href="tel:+256776138917">
+        <img width="48" height="48" src="https://img.icons8.com/color/48/apple-phone.png" alt="apple-phone"/>
+    </a>
+    
+    </div>
+</footer>
+</html>

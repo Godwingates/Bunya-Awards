@@ -6,6 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const voteEndDate = new Date("2024-12-16T00:00:00");
     let totalVotes = 0;
 
+    // Use the page URL or a unique identifier for this page
+    const pageId = window.location.pathname;
+
     // Initialize vote counts from localStorage
     contestantCards.forEach(card => {
         const contestantName = card.getAttribute("data-name");
@@ -27,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (timeRemaining > 0) {
             const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
             const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
 
             timerElement.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
@@ -45,9 +48,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const contestantName = card.getAttribute("data-name");
             const voteCountElement = card.querySelector(".vote-count");
 
-            // Check if user has already voted on this page
-            if (sessionStorage.getItem("already-voted")) {
-                alert("You have already voted on this page! You cannot vote again.");
+            // Create a unique key for the vote based on the page and contestant
+            const voteKey = `${pageId}-${contestantName}`;
+
+            // Check if user has already voted on this page for this contestant
+            if (sessionStorage.getItem(voteKey)) {
+                alert("You have already voted for this contestant on this page! You cannot vote again.");
                 return;
             }
 
@@ -67,8 +73,8 @@ document.addEventListener("DOMContentLoaded", () => {
             // Save votes to localStorage
             localStorage.setItem(contestantName, newVotes);
 
-            // Mark as voted in sessionStorage
-            sessionStorage.setItem("already-voted", "true");
+            // Mark this vote as completed in sessionStorage
+            sessionStorage.setItem(voteKey, "true");
 
             // Update total votes
             totalVotes += 1;

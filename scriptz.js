@@ -9,11 +9,22 @@ document.addEventListener("DOMContentLoaded", () => {
     // Use the page URL or a unique identifier for this page
     const pageId = window.location.pathname;
 
-    // Initialize vote counts from localStorage
+    // Simulated "server" to store votes (replace this with a real backend if needed)
+    let simulatedServer = {
+        "Bitware Prince willz ft Vic tumz": 0,
+        "Budget Vic tumz ft torino": 0,
+        "Nzikakane Doro weiyz ft prince willz": 0,
+        "Wandeka tall man ft prince willz": 0,
+    };
+
+    // Initialize vote counts from localStorage or simulated server
     contestantCards.forEach(card => {
         const contestantName = card.getAttribute("data-name");
         const storedVotes = parseInt(localStorage.getItem(contestantName) || "0");
         const voteCountElement = card.querySelector(".vote-count");
+
+        // Update votes in the simulated server
+        simulatedServer[contestantName] = storedVotes;
 
         voteCountElement.textContent = storedVotes;
         card.setAttribute("data-votes", storedVotes);
@@ -41,6 +52,19 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     setInterval(updateTimer, 1000);
 
+    // Function to update the total vote counts
+    function updateVoteDisplay() {
+        totalVotes = 0; // Reset total votes before recounting
+        contestantCards.forEach(card => {
+            const name = card.getAttribute("data-name");
+            const voteCountElement = card.querySelector(".vote-count");
+            const votes = simulatedServer[name]; // Get votes from the simulated server
+            voteCountElement.textContent = votes;
+            totalVotes += votes;
+        });
+        totalVotesElement.textContent = totalVotes;
+    }
+
     // Voting logic
     voteButtons.forEach(button => {
         button.addEventListener("click", (event) => {
@@ -60,24 +84,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 return; // Exit if the user cancels
             }
 
-            const currentVotes = parseInt(card.getAttribute("data-votes"));
+            const currentVotes = parseInt(simulatedServer[contestantName]);
             const newVotes = currentVotes + 1;
 
-            // Update votes
-            card.setAttribute("data-votes", newVotes);
-            voteCountElement.textContent = newVotes;
+            // Update votes in the simulated server
+            simulatedServer[contestantName] = newVotes;
 
-            // Save votes to localStorage
+            // Save votes to localStorage (for persistence)
             localStorage.setItem(contestantName, newVotes);
 
             // Mark this page as voted in sessionStorage
             sessionStorage.setItem(`voted-${pageId}`, "true");
 
-            // Update total votes
-            totalVotes += 1;
-            totalVotesElement.textContent = totalVotes;
+            // Update vote display
+            updateVoteDisplay();
 
             alert(`Thank you for voting for ${contestantName}!`);
         });
     });
+
+    // Initialize the vote display
+    updateVoteDisplay();
 });

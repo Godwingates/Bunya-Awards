@@ -12,7 +12,7 @@ const firebaseConfig = {
     appId: "your-app-id"
 };
 
-// Initialize Firebase
+// Initialize Firebase p
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 

@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         "Wandeka tall man ft prince willz": 0,
     };
 
-    // Initialize vote counts from localStorage or simulated server
+    // Initialize vote counts from localStorage or simulated server 
     contestantCards.forEach(card => {
         const contestantName = card.getAttribute("data-name");
         const storedVotes = parseInt(localStorage.getItem(contestantName) || "0");
